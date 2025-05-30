@@ -4,4 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("article")
+    tags = ["Hexlet Django Blog"]
+    return render(
+        request,
+        "about.html",
+        context={"tags": tags},
+    )
