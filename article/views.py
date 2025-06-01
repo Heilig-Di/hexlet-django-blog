@@ -1,12 +1,10 @@
-from django.shortcuts import render
+from hexlet_django_blog.views.index import HomePageView
 
-# Create your views here.
-from django.http import HttpResponse
 
-def index(request):
-    tags = ["Hexlet Django Blog"]
-    return render(
-        request,
-        "about.html",
-        context={"tags": tags},
-    )
+class AboutPageView(HomePageView):
+    template_name = "about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context={"tags": tags}
+        return context
