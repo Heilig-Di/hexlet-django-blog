@@ -1,10 +1,13 @@
-from hexlet_django_blog.views.index import HomePageView
+from django.shortcuts import render
+from django.views import View
+from django.http import HttpResponse
 
 
-class AboutPageView(HomePageView):
-    template_name = "about.html"
+def index(request, tags, article_id):
+    return HttpResponse(f"Статья номер {article_id}. Тег {tags}")
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context={"tags": tags}
-        return context
+
+class AboutViews(View):
+    def get(self, request, *args, **kwargs):
+        tags = ["Hexlet Django Blog"]
+        return render(request, "template_name.html", {"tags": tags})
